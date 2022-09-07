@@ -34,7 +34,7 @@ export const AddSongForm = () => {
 
   return (
     <div className="addForm">
-      <h2 className="center">Add a Song</h2>
+      <h2 className="addHeader">Add a Song</h2>
       <form onSubmit={onFormSubmit}>
         <div className="formGroup">
           <label htmlFor="songName">Song Name:</label>

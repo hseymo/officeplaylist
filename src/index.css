@@ -11,7 +11,6 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  color: var(--darkteal);
   font-family: 'Sora', sans-serif;
 }
 
@@ -38,70 +37,69 @@ header h1 {
   padding: 10px;
 }
 
-.description {
-  margin: 5px 20px;
-  font-size: 20px;
-}
-
-.center {
+.Subheader {
+  margin: 10px 20px;
+  color: var(--darkteal);
   text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
-.container {
-  background-color: var(--teal);
-  margin-top: 20px;
+.Subheader h2 {
+  margin: 0 20px;
 }
 
 button {
   margin: 10px;
   padding: 5px;
+  color: var(--darkteal);
+}
+
+.SongsList h2 {
+  text-align: center;
+  color: var(--darkteal);
 }
 
 .listContainer {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  background-color: var(--teal);
+  margin-top: 20px;
 }
 
-.card {
+.songCard {
   background-color: var(--lightblue);
   border: 5px solid var(--lightgray);
   margin: 20px;
   padding: 10px;
   text-align: center;
-}
-
-.songCard {
-  flex-grow: 1;
+  color: var(--darkteal);
+  flex: 1 1 0px;
+  min-width: 250px;
 }
 
 .songCard h3 {
-  font-size: 30px;
+  font-size: 20px;
   padding: 10px;
 }
 
 .songCard h4 {
-  font-size: 25px;
-  padding: 10px;
-}
-
-.createContainer {
-  min-height: 85vh;
+  font-size: 15px;
+  padding: 5px;
 }
 
 .addForm {
+  text-align: center;
   display: flex;
-  padding: 20px;
-  flex-direction: column;
-  width: 100vw;
+  justify-content: center; 
   align-items: center;
+  padding: 20px;
+  background-color: var(--darkteal);
+  color: var(--lightgray);
+  margin-bottom: 20px
 }
 
-.addForm h2{
-  margin-bottom: 20px;
+.addHeader {
+  margin: 0px 50px 20px 0px;
 }
 
 .addForm input {
