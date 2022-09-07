@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./index.css";
-import { getAllSongs } from "./songsSlice";
-// import api from "../../utils/api.js";
+import { selectAllSongs, getAllSongs } from './songsSlice';
 
 export const SongsList = () => {
   const dispatch = useDispatch();
-  const songs = useSelector((state) => state.songs);
+  let songs = useSelector(selectAllSongs);
 
-//   const songStatus = useSelector((state) => state.songs.status);
+  const songStatus = useSelector(state => state.songs.status);
 
-//   useEffect(() => {
-//     if (songStatus === "idle") {
-//       dispatch(getAllSongs());
-//     }
-//   }, [songStatus, dispatch]);
+  useEffect(() => {
+    if (songStatus === "idle") {
+      dispatch(getAllSongs());
+    }
+  }, [songStatus, dispatch]);
 
   const renderSongs = songs.map((song) => (
     <article className="songCard card" key={song.id}>
@@ -41,3 +40,4 @@ export const SongsList = () => {
     </div>
   );
 };
+
