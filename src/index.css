@@ -1,9 +1,115 @@
+:root {
+  --lightgray: #F6F6F2;
+  --mint: #C2EDCE;
+  --lightblue: #BADFE7;
+  --teal: #6FB3B8;
+  --darkteal: #388087;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  color: var(--darkteal);
+  font-family: 'Sora', sans-serif;
 }
 
 html {
-  min-height: 100vh;
+  height: 100%;
+}
+
+body {
+  line-height: 1;
+  background-color: var(--lightgray);
+}
+
+header {
+  background-color: var(--lightblue);
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  background-color: var(--lightblue);
+  color: var(--darkteal);
+  padding: 10px;
+}
+
+.description {
+  margin: 5px 20px;
+  font-size: 20px;
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.container {
+  background-color: var(--teal);
+  margin-top: 20px;
+}
+
+button {
+  margin: 10px;
+  padding: 5px;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: var(--lightblue);
+  border: 5px solid var(--lightgray);
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.songCard {
+  flex-grow: 1;
+}
+
+.songCard h3 {
+  font-size: 30px;
+  padding: 10px;
+}
+
+.songCard h4 {
+  font-size: 25px;
+  padding: 10px;
+}
+
+.createContainer {
+  min-height: 85vh;
+}
+
+.addForm {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+
+.addForm h2{
+  margin-bottom: 20px;
+}
+
+.addForm input {
+  width:30vw;
+  padding:5px;
+  margin: 10px;
+}
+
+.formGroup {
+  width: 20vw
 }
