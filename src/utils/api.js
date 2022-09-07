@@ -18,10 +18,3 @@ module.exports = {
     return response.json();
   },
 };
-
-// export const getAllSongs = createAsyncThunk(`songs/fetchSongs`, async () => {
-//   const response = await fetch(`${BASE_URL}/api/songs`);
-//   return response.json();
-// });
-
-// export default getAllSongs;

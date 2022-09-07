@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { songAdded } from "./songsSlice";
+import { createNewSong } from "./songsSlice";
 
 export const AddSongForm = () => {
-  // only this form needs to keep track of these pieces of state, thus it is not appropriate to add to redux and redux store is only for data that is considered global
   const [songName, setSongName] = useState("");
   const [artist, setArtist] = useState("");
   const [genre, setGenre] = useState("");
+  const [createRequestStatus, setCreateRequestStatus] = useState("idle");
 
   const dispatch = useDispatch();
 
@@ -15,21 +15,32 @@ export const AddSongForm = () => {
   const onArtistChange = (e) => setArtist(e.target.value);
   const onGenreChange = (e) => setGenre(e.target.value);
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
     if (songName.trim()) {
-      dispatch(
-        songAdded({
-          id: nanoid(),
-          song_name: songName,
-          artist,
-          genre,
-        })
-      );
+      try {
+        setCreateRequestStatus("pending");
+        const res = await dispatch(
+          createNewSong({
+            id: nanoid(),
+            song_name: songName,
+            artist,
+            genre,
+          })
+        );
+        setSongName("");
+        setArtist("");
+        setGenre("");
+        // immer must return one or the other
+      } catch (err) {
+        console.log(err);
+      }
+       finally {
+        setCreateRequestStatus("idle");
+      }
+    } else {
+      console.log("please enter song name");
     }
-    setSongName("");
-    setArtist("");
-    setGenre("");
   };
 
   return (

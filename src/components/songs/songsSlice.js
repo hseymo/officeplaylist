@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // const initialState = [
 //   {
@@ -25,9 +25,15 @@ export const getAllSongs = createAsyncThunk(`songs/getAllSongs`, async () => {
   try {
     console.log("sending request....");
     const response = await fetch(
-      `https://officeplaylistserver.herokuapp.com/api/songs`
+      `https://officeplaylistserver.herokuapp.com/api/songs`,
+      // is this header necessary???
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "no-cors",
+        },
+      }
     );
-    console.log(response)
+    console.log(response);
     const jsonresponse = await response.json();
     console.log(jsonresponse);
     return jsonresponse;
@@ -36,35 +42,57 @@ export const getAllSongs = createAsyncThunk(`songs/getAllSongs`, async () => {
   }
 });
 
+export const createNewSong = createAsyncThunk(
+  `songs/createNewSong`,
+  async (songObject) => {
+    try {
+      const response = await fetch(
+        `https://officeplaylistserver.herokuapp.com/api/songs`,
+        {
+          method: "POST",
+          body: JSON.stringify(songObject),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+      return response.json();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 const songsSlice = createSlice({
   name: "songs",
   initialState,
   reducers: {
     songAdded(state, action) {
       state.songs.push(action.payload);
-    }
+    },
   },
   extraReducers(builder) {
     builder
       .addCase(getAllSongs.pending, (state, action) => {
-        state.status = 'loading'
+        state.status = "loading";
       })
       .addCase(getAllSongs.fulfilled, (state, action) => {
-        state.status = 'succeeded'
+        state.status = "succeeded";
         // Add any fetched songs to the array
-        state.songs = state.songs.concat(action.payload)
+        state.songs = state.songs.concat(action.payload);
       })
       .addCase(getAllSongs.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
+        state.status = "failed";
+        state.error = action.error.message;
       })
-  }
+      .addCase(createNewSong.fulfilled, (state, action) => 
+        void(state.songs = state.songs.push(action.payload)));
+  },
 });
 
 export const { songAdded } = songsSlice.actions;
 
 export default songsSlice.reducer;
 
-export const selectAllSongs = state => state.songs.songs;
-
-
+export const selectAllSongs = (state) => state.songs.songs;
