@@ -6,9 +6,9 @@ import {AddSongForm} from './components/songs/addSongForm'
 
 function App() {
 
-  useEffect(()=> {
-    api.getAllSongs().then((data) => console.log(data))
-  }, [])
+  // useEffect(()=> {
+  //   api.getAllSongs().then((data) => console.log(data))
+  // }, [])
 
   return (
     <div className="App">
